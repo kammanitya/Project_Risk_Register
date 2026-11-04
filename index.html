@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Risk Register</title>
+    <style>
+        body {
+            font: 16px Arial;
+            background: #f2f5f9;
+            color: #253247;
+            padding: 30px;
+        }
+
+        main {
+            max-width: 760px;
+            margin: auto;
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #17365d;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccd5df;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #17365d;
+            color: white;
+            cursor: pointer;
+        }
+
+        li {
+            padding: 9px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Project Risk Register</h1>
+        <input id="risk" placeholder="Risk">
+        <select id="prob">
+            <option>Low probability</option>
+            <option>Medium probability</option>
+            <option>High probability</option>
+        </select>
+        <select id="impact">
+            <option>Low impact</option>
+            <option>Medium impact</option>
+            <option>High impact</option>
+        </select>
+        <input id="plan" placeholder="Mitigation action">
+        <button onclick="add()">Add risk</button>
+        <ul id="list"></ul>
+
+        <script>
+            function add() {
+                let ids = ['risk', 'prob', 'impact', 'plan'];
+                let v = ids.map(x =>
+                    document.getElementById(x).value
+                );
+
+                if (!v[0] || !v[3]) return;
+
+                let li = document.createElement('li');
+                li.textContent = v.join(' | ');
+                document.querySelector('#list').append(li);
+
+                ids.forEach(x =>
+                    document.getElementById(x).value = ''
+                );
+            }
+        </script>
+    </main>
+</body>
+</html>
